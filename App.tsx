@@ -23,7 +23,11 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { Navigation } from 'react-native-navigation';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Button } from '@react-navigation/elements';
+import ImageGallery from './src/4kImage/imageList'
+
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
@@ -53,10 +57,60 @@ function Section({children, title}: SectionProps): React.JSX.Element {
     </View>
   );
 }
+function HomeScreen() {
+  const navigation = useNavigation()
+   const isDarkMode = useColorScheme() === 'dark';
+   const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+    const safePadding = '5%';
+  return (
+      <ScrollView
+        style={backgroundStyle}>
+        <View style={{paddingRight: safePadding}}>
+          <Header/>
+        </View>
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            paddingHorizontal: safePadding,
+            paddingBottom: safePadding,
+          }}>
+          <Section title="4K图片">
+            <Button onPress={() => navigation.push('ImageGallery')}>
+             4K壁纸
+      </Button>
+          </Section>
+       
+        </View>
+      </ScrollView>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+function RootStack() {
+  return (
+    <Stack.Navigator initialRouteName="Home" screenOptions={{headerStyle:{backgroundColor:'tomato'}}}>
+      
+      <Stack.Screen name="Home" component={HomeScreen} options={{title:'overView'}}></Stack.Screen>
+       <Stack.Screen name="Details" component={DetailsScreen} />
+       <Stack.Screen name="ImageGallery" component={ImageGallery} />
+    </Stack.Navigator>
+  );
+}
+function App2(){
+   return (
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
+  );
+}
 
 
-function App(): React.JSX.Element {
+
+function DetailsScreen(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+  const navigation = useNavigation()
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -91,7 +145,7 @@ function App(): React.JSX.Element {
             paddingBottom: safePadding,
           }}>
           <Section title="Cos网页">
-            <Text style={styles.highlight} >NNCos 柰票</Text> 
+             <Button onPress={() => navigation.goBack()}>Go back</Button>
           </Section>
        
         </View>
@@ -119,4 +173,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default App2;
