@@ -54,7 +54,14 @@ const renderItem = ({ item }: { item: ImageInfo }) => (
       <Text style={styles.imageTitle} numberOfLines={1}>{item.title}</Text>
     </View>
   );
-
+const renderFooter = () => {
+    if (!loading) return null;
+    return (
+      <View style={styles.footer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  };
   if (loading && page == 0) {
     return (
       <View style={styles.centered}>
@@ -81,15 +88,12 @@ const renderItem = ({ item }: { item: ImageInfo }) => (
         numColumns={2} // 两列显示
         columnWrapperStyle={styles.row}
         contentContainerStyle={styles.listContent}
+        ListFooterComponent={renderFooter}
       />
     </View>
   );
   }
 
-
-
-  
- 
 };
 
 const styles = StyleSheet.create({
@@ -115,6 +119,7 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingHorizontal: 10,
+    paddingBottom: 80, // 增加底部内边距，确保 footer 可见
   },
   row: {
     justifyContent: 'space-between',
@@ -144,6 +149,10 @@ const styles = StyleSheet.create({
     padding: 8,
     textAlign: 'center',
     color: '#333',
+  },
+  footer: {
+    paddingVertical: 20,
+    alignItems: 'center',
   },
 });
 
