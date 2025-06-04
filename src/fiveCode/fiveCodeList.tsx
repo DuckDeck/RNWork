@@ -1,4 +1,3 @@
-// components/ImageGallery.js
 import React, {useCallback, useEffect, useState} from 'react';
 import {
   View,
@@ -9,12 +8,9 @@ import {
   ActivityIndicator,
   Dimensions,
 } from 'react-native';
-import {ImageInfo, get4Kimages} from '../model/ImageInfo';
-
 const {width} = Dimensions.get('window');
-const IMAGE_SIZE = (width - 30) / 2; // 两列显示，减去一些间距
 
-const ImageGallery = () => {
+const FiveCodeList = () => {
   const [images, setImages] = useState<ImageInfo[]>([]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);

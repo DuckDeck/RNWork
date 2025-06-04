@@ -23,10 +23,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Button } from '@react-navigation/elements';
-import ImageGallery from './src/4kImage/imageList'
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Button} from '@react-navigation/elements';
+import ImageGallery from './src/4kImage/imageList';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -58,59 +58,59 @@ function Section({children, title}: SectionProps): React.JSX.Element {
   );
 }
 function HomeScreen() {
-  const navigation = useNavigation()
-   const isDarkMode = useColorScheme() === 'dark';
-   const backgroundStyle = {
+  const navigation = useNavigation();
+  const isDarkMode = useColorScheme() === 'dark';
+  const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-    const safePadding = '5%';
+  const safePadding = '5%';
   return (
-      <ScrollView
-        style={backgroundStyle}>
-        <View style={{paddingRight: safePadding}}>
-          <Header/>
-        </View>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            paddingHorizontal: safePadding,
-            paddingBottom: safePadding,
-          }}>
-          <Section title="4K图片">
-            <Button onPress={() => navigation.push('ImageGallery')}>
-             4K壁纸
-      </Button>
-          </Section>
-       
-        </View>
-      </ScrollView>
+    <ScrollView style={backgroundStyle}>
+      <View style={{paddingRight: safePadding}}>
+        <Header />
+      </View>
+      <View
+        style={{
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          paddingHorizontal: safePadding,
+          paddingBottom: safePadding,
+        }}>
+        <Section title="4K图片">
+          <Button onPress={() => navigation.push('ImageGallery')}>
+            4K壁纸
+          </Button>
+        </Section>
+      </View>
+    </ScrollView>
   );
 }
 
 const Stack = createNativeStackNavigator();
 function RootStack() {
   return (
-    <Stack.Navigator initialRouteName="Home" screenOptions={{headerStyle:{backgroundColor:'tomato'}}}>
-      
-      <Stack.Screen name="Home" component={HomeScreen} options={{title:'overView'}}></Stack.Screen>
-       <Stack.Screen name="Details" component={DetailsScreen} />
-       <Stack.Screen name="ImageGallery" component={ImageGallery} />
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{headerStyle: {backgroundColor: 'tomato'}}}>
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{title: 'overView'}}></Stack.Screen>
+      <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="ImageGallery" component={ImageGallery} />
     </Stack.Navigator>
   );
 }
-function App2(){
-   return (
+function App2() {
+  return (
     <NavigationContainer>
       <RootStack />
     </NavigationContainer>
   );
 }
 
-
-
 function DetailsScreen(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -133,10 +133,9 @@ function DetailsScreen(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        style={backgroundStyle}>
+      <ScrollView style={backgroundStyle}>
         <View style={{paddingRight: safePadding}}>
-          <Header/>
+          <Header />
         </View>
         <View
           style={{
@@ -145,9 +144,8 @@ function DetailsScreen(): React.JSX.Element {
             paddingBottom: safePadding,
           }}>
           <Section title="Cos网页">
-             <Button onPress={() => navigation.goBack()}>Go back</Button>
+            <Button onPress={() => navigation.goBack()}>Go back</Button>
           </Section>
-       
         </View>
       </ScrollView>
     </View>
