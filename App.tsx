@@ -82,7 +82,7 @@ function HomeScreen() {
         </Section>
          <Section title="五笔反查">
           <Button onPress={() => navigation.push('FiveCode')}>
-            4K壁纸
+            五笔反查
           </Button>
         </Section>
       </View>
@@ -95,7 +95,7 @@ function RootStack() {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      screenOptions={{headerStyle: {backgroundColor: 'tomato'}}}>
+      screenOptions={{headerStyle: {backgroundColor: 'gray'}}}>
       <Stack.Screen
         name="Home"
         component={HomeScreen}
