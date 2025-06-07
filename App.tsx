@@ -28,6 +28,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Button} from '@react-navigation/elements';
 import ImageGallery from './src/4kImage/imageList';
 import FiveCode from './src/fiveCode/fiveCodeList';
+import {RootSiblingParent} from 'react-native-root-siblings';
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
@@ -80,10 +81,8 @@ function HomeScreen() {
             4K壁纸
           </Button>
         </Section>
-         <Section title="五笔反查">
-          <Button onPress={() => navigation.push('FiveCode')}>
-            五笔反查
-          </Button>
+        <Section title="五笔反查">
+          <Button onPress={() => navigation.push('FiveCode')}>五笔反查</Button>
         </Section>
       </View>
     </ScrollView>
@@ -102,15 +101,17 @@ function RootStack() {
         options={{title: 'overView'}}></Stack.Screen>
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="ImageGallery" component={ImageGallery} />
-       <Stack.Screen name="FiveCode" component={FiveCode} />
+      <Stack.Screen name="FiveCode" component={FiveCode} />
     </Stack.Navigator>
   );
 }
 function App2() {
   return (
-    <NavigationContainer>
-      <RootStack />
-    </NavigationContainer>
+    <RootSiblingParent>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </RootSiblingParent>
   );
 }
 
